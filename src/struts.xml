@@ -24,5 +24,26 @@
 			<result name="collectFail">/userCollectionSuccess.jsp</result>
 		</action>
 		
+
+	<!--得到用户的收藏-->
+	<action name="getCollect" class="database.action.CustomerAction" method="getCollect">
+			<result name="success">/NewFile.jsp</result>
+			<result name="fail">/1.jsp</result>	
+	</action>
+	<!--得到报错的题目-->
+	<action name="getFeedback" class="database.action.AdminAction" method="getFeedback">
+			<result name="success">/NewFile.jsp</result>
+			<result name="fail">/1.jsp</result>	
+	</action>
+	<!--管理员修改错题-->
+	<action name="UpdateFeedback" class="database.action.AdminAction" method="UpdateFeedback">
+			<result name="success">/NewFile.jsp</result>
+			<result name="fail">/1.jsp</result>	
+	</action>
+	<!--用户报错-->
+	<action name="UploadFeedback" class="database.action.AdminAction" method="UploadFeedback">
+			<result name="success">/NewFile.jsp</result>
+			<result name="fail">/1.jsp</result>	
+	</action>
 	</package>
 </struts>
