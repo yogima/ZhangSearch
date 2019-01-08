@@ -87,6 +87,64 @@ public class QuestionDAO extends BaseHibernateDao implements IQuestionDAO{
 	
 	}
 
+	public Question findById(int id) {
+		System.out.println("execute --QuestionfindById()-- method.");
+		Question ques = null;
+		Transaction tran = null;
+		Session session = null;
+		try {
+			session=getSession();
+			tran = session.beginTransaction();
+			ques = (Question) session.get(Question.class, id);
+			tran.commit();
+		}catch (RuntimeException re) {
+			if (tran != null)
+				tran.rollback();
+			throw re;
+		}finally {
+			session.close();
+		}
+		return ques;
+	}
+		
+	public void saveOrUpdate(Question transientInstance) {
+		System.out.println("execute --save()-- method.");
+		Transaction tran = null;
+		Session session = null;
+		try {
+			session = getSession();
+			tran = session.beginTransaction();
+			session.saveOrUpdate(transientInstance);
+			tran.commit();
+		} catch (RuntimeException re) {
+			if (tran != null)
+				tran.rollback();
+			throw re;
+		} finally {
+			session.close();
+		}
+	}
 
+	//调用此方法来得到报错的题目
+	public List<Question> getErrors()
+	{
+		System.out.println("execute --getError()-- method.");
+		Transaction tran = null;
+		Session session = null;
+		try {
+			session = getSession();
+			tran = session.beginTransaction();
+			String queryString = "from Question as ques where ques.error=1";
+			Query queryObject = getSession().createQuery(queryString);
+			tran.commit();
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			if (tran != null)
+				tran.rollback();
+			throw re;
+		} finally {
+			session.close();
+		}
+	}
 
 }

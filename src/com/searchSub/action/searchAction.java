@@ -1,22 +1,22 @@
 package com.searchSub.action;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Map;
 
-import org.apache.struts2.interceptor.RequestAware;
-
+import com.opensymphony.xwork2.ActionContext;
+import com.searchSub.po.IQuestion;
 import com.searchSub.service.ISearchServ;
 
-public class searchAction implements RequestAware{
+public class searchAction{
 	
 	private File uploadImage; //得到上传的文件
 	private String uploadImageContentType; //得到文件的类型
 	private String uploadImageFileName; //得到文件的名称
 	
 	private ISearchServ serv = null;
-	private ArrayList<String> answers;
-	private Map request;
+	
+	private IQuestion ques = null;
+	private String ans;
 	
 	public ISearchServ getServ() {
 		return serv;
@@ -28,12 +28,19 @@ public class searchAction implements RequestAware{
 
 	public String Img() {
 		
+		ActionContext ctx = ActionContext.getContext();
+		//通过ActionContext对象获取请求、会话和上下文对象相关联的Map对象
+		Map session=(Map) ctx.getSession();
+		
 		if(serv.searchByImg(uploadImage,uploadImageContentType,uploadImageFileName) != null) {
 			
 			System.out.println("fileName:"+uploadImageFileName);
 			
-			answers = serv.searchByImg(uploadImage,uploadImageContentType,uploadImageFileName);
-			request.put("answers", answers);
+			ques = serv.searchByImg(uploadImage,uploadImageContentType,uploadImageFileName);
+			System.out.print(ques.getAnswer());
+			ans = ques.getAnswer();
+			session.put("ques", ques);
+			session.put("ans", ans);
 			return "success";
 		}
 		return "fail";
@@ -41,12 +48,6 @@ public class searchAction implements RequestAware{
 	
 	public String search() {
 		return "fail";
-	}
-
-	@Override
-	public void setRequest(Map<String, Object> request) {
-		// TODO Auto-generated method stub
-		this.request = request;
 	}
 
 	public File getUploadImage() {
@@ -71,6 +72,22 @@ public class searchAction implements RequestAware{
 
 	public void setUploadImageFileName(String uploadImageFileName) {
 		this.uploadImageFileName = uploadImageFileName;
+	}
+	
+	public IQuestion getQues() {
+		return ques;
+	}
+
+	public void setQues(IQuestion ques) {
+		this.ques = ques;
+	}
+
+	public String getAns() {
+		return ans;
+	}
+
+	public void setAns(String ans) {
+		this.ans = ans;
 	}
 	
 	

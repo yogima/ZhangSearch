@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -101,7 +102,8 @@
 	</div>
 	<center>
 		<h2 class="title-agile text-center" style="margin-top:50px;">该题的答案如下所示：</h2>
-		<textarea rows="10" name="result" style="width:760px;height:200px;font-size:18px;" readonly="readonly">${answers.get(0)}</textarea><br>
+		<textarea rows="10" name="result" style="width:760px;height:200px;font-size:18px;" readonly="readonly">${session.ans}</textarea><br>
+		<s:property value="#session.ans"/>
 		<img src="pic/收藏.png" style="width:40px;height:40px;"/><a href="login.jsp">收藏</a>
 		<img src="pic/报错.png" style="width:40px;height:40px;"/><a href="login.jsp">报错</a>
 		<img src="pic/回答.png" style="width:40px;height:40px;"/><a href="login.jsp">回答</a>

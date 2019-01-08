@@ -9,4 +9,9 @@ public interface IQuestionDAO {
 	public void delete(Question transientInstance);
 	public void update(Question transientInstance);
 	public List findByHQL(String hql);
+	public Question findById(int id);
+	//保存收藏
+	public void saveOrUpdate(Question transientInstance);
+	//得到出错的题目方法
+	public List<Question> getErrors(); 
 }

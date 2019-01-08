@@ -3,23 +3,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<title>老张搜题，你值得拥有</title>
+<title>欢迎您，管理员</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="keywords" content="Border sign in Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
-	<script type="text/javascript">
-	function tempClick()
-	{	
-	/**
-	 * 火狐浏览器实现点击图片出现文件上传界面
-	 * var a=document.createEvent("MouseEvents"); 
-	 * a.initEvent("click", true, true);  
-	 * document.getElementById("upload_main_img").dispatchEvent(a); 
-	 */	
-	//IE浏览器实现点击图片出现文件上传界面
-		document.getElementById('main_img').click();//调用main_img的onclick事件	
-	} 
-	</script>
 	<style>    
 		.buttom
 		{
@@ -54,7 +41,7 @@
 		}
 	</style>
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style1.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/style2.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/font-awesome.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/header.css" type="text/css" media="all">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
@@ -84,9 +71,8 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<div class="w3l-navtop">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#" style="font-size:24px">个人中心</a></li>
-							<li><a href="searchMyCollect" style="font-size:24px">我的错题</a></li>
-							<li><a href="#" style="font-size:24px">退出登录</a></li>
+							<li><a href="getFeedback" style="font-size:20px">用户反馈</a></li>
+							<li><a href="login.jsp" style="font-size:20px">退出登录</a></li>
 						</ul>
 					</div>
 				</div>
@@ -94,21 +80,21 @@
 		</div>
 	</div>
 <form action="upload" method="post" enctype="multipart/form-data">
-	<div>
+	<!-- <div>
 		<center>
 			<input type="text" name="question" style="width:400px;height:35px;font-size:28px;">
 			<input type="submit" value="搜索" id="submit" class="buttom">
 		</center>
-	</div>
+	</div> -->
 	<div class="content-w3ls">
 		<div class="content-bottom">
 			<div class="field-group">
 				<div class="wthree-field">
-					<center>
+					<!--  <center>
 						<h1 class="title-agile text-center" style="font-size:40px;">拍照搜题</h1>
-							<input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="main_img" name="uploadImage" />
+							<input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="main_img" name="wj" />
 							<div id="img_2" style="width:500px;height:500px; cursor:pointer; background-image: url('pic/搜索按钮.png');" onclick="tempClick()"></div>
-					</center>
+					</center>-->
 				</div>
 			</div>
 		</div>

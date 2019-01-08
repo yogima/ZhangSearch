@@ -14,5 +14,8 @@
 		<property name="answer" type="string">
 			<column name="answer" length="500" />
 		</property>
+		<property name="error" type="int">
+			<column name="error" />
+		</property>
 	</class>
 </hibernate-mapping>

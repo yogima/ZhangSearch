@@ -5,12 +5,14 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.searchSub.po.Customer;
+
+import com.searchSub.po.Administrator;
 
 
-public class CustomerDAO extends BaseHibernateDao implements ICustomerDAO {
 
-	public void save(Customer transientInstance) {
+public class AdminDAO extends BaseHibernateDao implements IAdminDAO{
+
+	public void save(Administrator transientInstance) {
 		System.out.println("execute --save()-- method.");
 		Transaction tran = null;
 		Session session = null;
@@ -30,7 +32,7 @@ public class CustomerDAO extends BaseHibernateDao implements ICustomerDAO {
 
 	
 
-	public void delete(Customer transientInstance) {
+	public void delete(Administrator transientInstance) {
 		System.out.println("execute --delete()-- method.");
 		Transaction tran = null;
 		Session session = null;
@@ -48,14 +50,14 @@ public class CustomerDAO extends BaseHibernateDao implements ICustomerDAO {
 		}
 	}
 
-	public void update(Customer transientInstance) {
+	public void update(Administrator transientInstance) {
 		System.out.println("execute --update()-- method.");
 		Transaction tran = null;
 		Session session = null;
 		try {
 			session = getSession();
 			tran = session.beginTransaction();
-			session.merge(transientInstance);
+			session.update(transientInstance);
 			tran.commit();
 		} catch (RuntimeException re) {
 			if (tran != null)
@@ -77,44 +79,6 @@ public class CustomerDAO extends BaseHibernateDao implements ICustomerDAO {
 			Query queryObject = getSession().createQuery(queryString);
 			tran.commit();
 			return queryObject.list();
-		} catch (RuntimeException re) {
-			if (tran != null)
-				tran.rollback();
-			throw re;
-		} finally {
-			session.close();
-		}
-	}
-	
-	public Customer findById(int id) {
-		System.out.println("execute --findById()-- method.");
-		Customer cust = null;
-		Transaction tran = null;
-		Session session = null;
-		try {
-			session=getSession();
-			tran = session.beginTransaction();
-			cust = (Customer) session.get(Customer.class, id);
-			tran.commit();
-		}catch (RuntimeException re) {
-			if (tran != null)
-				tran.rollback();
-			throw re;
-		}finally {
-			session.close();
-		}
-		return cust;
-	}
-
-	public void saveOrUpdate(Customer transientInstance) {
-		System.out.println("execute --save()-- method.");
-		Transaction tran = null;
-		Session session = null;
-		try {
-			session = getSession();
-			tran = session.beginTransaction();
-			session.saveOrUpdate(transientInstance);
-			tran.commit();
 		} catch (RuntimeException re) {
 			if (tran != null)
 				tran.rollback();

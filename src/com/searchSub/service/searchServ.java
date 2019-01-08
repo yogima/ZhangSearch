@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +21,10 @@ import com.searchSub.po.Question;
 public class searchServ implements ISearchServ{
 	
 	private String realPath;//要保存文件的物理路径(绝对路径)
-	private ArrayList<String> answers = new ArrayList<String>();;//答案数组
 	private IQuestion ques;//有可能需要
 	private IQuestionDAO quesDao;
 
-	public ArrayList<String> searchByImg(File uploadImage,String uploadImageContentType,String uploadImageFileName) {
-        //清除之前添加的答案
-		answers.clear();
+	public Question searchByImg(File uploadImage,String uploadImageContentType,String uploadImageFileName) {
 		
         uploadImageFileName=new Date().getTime()+ "_"+ uploadImageFileName.trim();
         String uploadPath = ServletActionContext.getServletContext().getRealPath("/uploadImg/").trim();
@@ -82,12 +78,16 @@ public class searchServ implements ISearchServ{
         String searchQuesHql = "From Question where question='"+recognizeText+"'";
         if(quesDao.findByHQL(searchQuesHql).size() > 0) {
         	List question = quesDao.findByHQL(searchQuesHql);
-        	answers.add(((Question) question.get(0)).getAnswer());
+        	ques = (Question) question.get(0);
         }else {
         	spider(recognizeText);
+        	String qHql = "From Question where answer='"+ques.getAnswer()+"'";
+        	//这里为什么要重新查询？因为爬虫爬下来的题目里面是没有id的
+        	ques = (IQuestion) quesDao.findByHQL(qHql).get(0);
         }	
-		if(answers != null)
-			return answers;
+		if(ques != null)
+			return (Question) ques;
+
 		return null;
 		
 	}
@@ -123,7 +123,6 @@ public class searchServ implements ISearchServ{
 
 					System.out.println("\n" + "链接：" + URL + "\n" + "搜索问题：" + question + "\n" + "当前问题：" + questionNow.text()
 							+ "\n" + "回答：" + answer.text());
-					answers.add(answer.text());
 					//System.out.print(answers);
 					//将新的题目和答案存入数据库
 					ques.setQuestion(recognizeText);
@@ -143,7 +142,6 @@ public class searchServ implements ISearchServ{
 							"            ]").select("div[class=bd answer]").select("div[class=line content]").select("div[class=best-text mb-10]");
 					// body > div.layout.main-body > div.main-con > div.questionWarp > dl > dd >
 					// span
-
 					System.out.println("\n" + "链接：" + URL + "\n" + "搜索问题：" + question + "\n" + "当前问题：" + questionNow.text()
 							+ "\n" + "回答：" + answer.get(0).text().substring(4));//百度知道的答案前四个为“展开全部”.
 					System.out.println(URL);

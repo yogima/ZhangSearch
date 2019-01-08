@@ -1,11 +1,14 @@
 package com.searchSub.action;
 
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.searchSub.po.Customer;
+import com.searchSub.po.Question;
 import com.searchSub.service.IUserService;
 
 public class UserAction implements SessionAware,RequestAware{
@@ -17,6 +20,7 @@ public class UserAction implements SessionAware,RequestAware{
 	}
 
 	private Customer user;
+	private Question ques;//取消收藏时用,不要忘记get和set方法
 	private IUserService userService = null;
 	
 	public void setUser(Customer user) {
@@ -46,7 +50,7 @@ public class UserAction implements SessionAware,RequestAware{
 	}
 	
 	public String collect() {
-		if(userService.collect((Customer) session.get("loginUser"), "1")) {
+		if(userService.collect((Customer) session.get("loginUser"), (Question)session.get("ques"))) {
 			request.put("isCollectionSuccess", "收藏成功");
 			return "collectSuccess";
 		}
@@ -58,7 +62,7 @@ public class UserAction implements SessionAware,RequestAware{
 	}
 	
 	public String cancelCollect() {
-		if(userService.cancelCollect((Customer) session.get("loginUser"), "1")) {
+		if(userService.cancelCollect((Customer) session.get("loginUser"),ques)) {
 			request.put("isCollectionSuccess", "取消收藏成功");
 			return "cancelCollectSuccess";
 		}	
@@ -66,6 +70,12 @@ public class UserAction implements SessionAware,RequestAware{
 			request.put("isCollectionSuccess", "取消收藏失败");
 			return "cancelCollectFail";
 		}
+	}
+	
+	public String myCollect() {
+		ArrayList collectSet = userService.myCollect((Customer) session.get("loginUser"));
+		request.put("collectSet", collectSet);
+		return "myCollectSuccess";
 	}
 
 	@Override
@@ -80,4 +90,13 @@ public class UserAction implements SessionAware,RequestAware{
 		this.request = request;
 	}
 
+	public Question getQues() {
+		return ques;
+	}
+
+	public void setQues(Question ques) {
+		this.ques = ques;
+	}
+
+	
 }

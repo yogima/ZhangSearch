@@ -85,7 +85,7 @@
 					<div class="w3l-navtop">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="#" style="font-size:24px">个人中心</a></li>
-							<li><a href="#" style="font-size:24px">我的错题</a></li>
+							<li><a href="searchMyCollect" style="font-size:24px">我的错题</a></li>
 							<li><a href="#" style="font-size:24px">退出登录</a></li>
 						</ul>
 					</div>
@@ -102,14 +102,14 @@
 	</div>
 	<center>
 		<h2 class="title-agile text-center" style="margin-top:50px;">该题的答案如下所示：</h2>
-		<textarea rows="10" name="result" style="width:760px;height:200px;font-size:18px;" readonly="readonly">${answers.get(0)}</textarea><br>
-		<img src="pic/收藏.png" style="width:40px;height:40px;"/><a href="collect">收藏</a>
-		<img src="pic/报错.png" style="width:40px;height:40px;"/><a href="">报错</a>
+		<textarea rows="10" name="result" style="width:760px;height:200px;font-size:18px;" readonly="readonly">${ans}</textarea><br>
+		<img src="pic/收藏.png" style="width:40px;height:40px;"/><a href="collect">收藏</a>${isCollectionSuccess}
+		<img src="pic/报错.png" style="width:40px;height:40px;"/><a href="UploadFeedback">报错</a>
 		<img src="pic/回答.png" style="width:40px;height:40px;"/><a href="userAnswer.jsp">回答</a>
 	</center>		
 	<center>
 		<h2 class="title-agile text-center" style="margin-top:50px;font-size:40px">拍照搜题</h2>
-		<input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="main_img" name="wj" />
+		<input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="main_img" name="uploadImage" />
 		<div id="img_2" style="width:500px;height:500px; cursor:pointer; background-image: url('pic/搜索按钮.png');" onclick="tempClick()"></div>
 	</center>
 </form>

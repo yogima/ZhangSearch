@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -64,6 +65,7 @@
 </head>
 
 <body>
+
 	<div class="header-w3l">
 		<!-- navigation -->
 		<div class="nav-agile">
@@ -93,24 +95,25 @@
 			</nav>
 		</div>
 	</div>
-	<center>
+	<form action="">
+		<center>
 		<!-- 显示题目 -->
 		<h2 style="font-size:20px;margin-top:40px;">错题1</h2>
-		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly">${answers.get(0)}</textarea><br>
+		<textarea rows="10" name="ques.question" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly">${collectSet.get(0).question}</textarea><br>
 		<!-- 显示答案 -->
 		<h2 style="font-size:20px;">答案</h2>
-		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly">${answers.get(0)}</textarea><br>
-		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">移除</a>
+		<textarea rows="10" name="ques.answer" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly">${collectSet.get(0).answer}</textarea><br>
+		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="cancelCollect" class="text-right" style="font-color:#ffffff;">移除</a>
 		<img src="pic/报错.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">报错</a>
 		<img src="pic/回答.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">回答</a>
 		
 		<!-- 显示题目 -->
 		<h2 style="font-size:20px;margin-top:40px;">错题2</h2>
-		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly">${answers.get(0)}</textarea><br>
+		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly"></textarea><br>
 		<!-- 显示答案 -->
 		<h2 style="font-size:20px;">答案</h2>
-		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly">${answers.get(0)}</textarea><br>
-		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">移除</a>
+		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly"></textarea><br>
+		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="cancelCollect" class="text-right" style="font-color:#ffffff;">移除</a>
 		<img src="pic/报错.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">报错</a>
 		<img src="pic/回答.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">回答</a>
 		
@@ -124,5 +127,39 @@
 		<img src="pic/报错.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">报错</a>
 		<img src="pic/回答.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">回答</a>
 	</center>
+	</form>
+
+	<center>
+		<!-- 显示题目 -->
+		<h2 style="font-size:20px;margin-top:40px;">错题1</h2>
+		<textarea rows="10" name="ques.question" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly">${collectSet.get(0).question}</textarea><br>
+		<!-- 显示答案 -->
+		<h2 style="font-size:20px;">答案</h2>
+		<textarea rows="10" name="ques.answer" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly">${collectSet.get(0).answer}</textarea><br>
+		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="cancelCollect" class="text-right" style="font-color:#ffffff;">移除</a>
+		<img src="pic/报错.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">报错</a>
+		<img src="pic/回答.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">回答</a>
+		
+		<!-- 显示题目 -->
+		<h2 style="font-size:20px;margin-top:40px;">错题2</h2>
+		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly"></textarea><br>
+		<!-- 显示答案 -->
+		<h2 style="font-size:20px;">答案</h2>
+		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly"></textarea><br>
+		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="cancelCollect" class="text-right" style="font-color:#ffffff;">移除</a>
+		<img src="pic/报错.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">报错</a>
+		<img src="pic/回答.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">回答</a>
+		
+		<!-- 显示题目 -->
+		<h2 style="font-size:20px;margin-top:40px;">错题3</h2>
+		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:10px" readonly="readonly">${answers.get(0)}</textarea><br>
+		<!-- 显示答案 -->
+		<h2 style="font-size:20px;">答案</h2>
+		<textarea rows="10" name="result" style="width:660px;height:100px;font-size:18px;margin-top:5px;" readonly="readonly">${answers.get(0)}</textarea><br>
+		<img src="pic/收藏.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">移除</a>
+		<img src="pic/报错.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">报错</a>
+		<img src="pic/回答.png" style="width:40px;height:40px;margin-top:10px"/><a href="" class="text-right" style="font-color:#ffffff;">回答</a>
+	</center>
+
 </body>
 </html>

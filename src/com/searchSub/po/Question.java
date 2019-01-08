@@ -4,7 +4,7 @@ public class Question implements IQuestion{
 	private int questionId;
 	private String question;
 	private String answer;
-
+	private int error;
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -27,6 +27,13 @@ public class Question implements IQuestion{
 
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	public int getError() {
+		return error;
+	}
+
+	public void setError(int error) {
+		this.error = error;
 	}
 
 }

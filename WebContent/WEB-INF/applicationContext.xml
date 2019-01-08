@@ -25,6 +25,7 @@
 					<value>com/searchSub/po/User.hbm.xml</value>
 					<value>com/searchSub/po/Customer.hbm.xml</value>
 					<value>com/searchSub/po/Question.hbm.xml</value>
+					<value>com/searchSub/po/Administrator.hbm.xml</value>
 				</list>
 			</property>
 		</bean> 
@@ -39,6 +40,7 @@
 		<bean id="userDao" class="com.searchSub.dao.CustomerDAO" parent="baseDao"/>
 		<bean id="userService" class="com.searchSub.service.UserService">
 			<property name="userDao" ref="userDao" />
+			<property name="quesDao" ref="quesDao" />
 		</bean>
 		<bean id="userAction" class="com.searchSub.action.UserAction" scope="prototype">
 			<property name="userService" ref="userService"/>
@@ -53,6 +55,21 @@
 		</bean>
 		<bean id="searchAction" class="com.searchSub.action.searchAction" scope="prototype">
 			<property name="serv" ref="searchServ"/>
+		</bean>
+		
+		
+		<!--管理员相关-->
+		<bean id="adminDao" class="com.searchSub.dao.AdminDAO" parent="baseDao" />
+		
+		<bean id="adminService" class="com.searchSub.service.AdminService">
+			<property name="customerDao" ref="userDao" />
+			<property name="questionDao" ref="quesDao" />
+			<property name="adminDao" ref="adminDao" />
+		</bean>
+		
+		<bean id="AdminAction" class="com.searchSub.action.AdminAction" scope="prototype">
+			<property name="customerService" ref="userService" />
+			<property name="adminService" ref="adminService" />
 		</bean>
 		
 </beans> 

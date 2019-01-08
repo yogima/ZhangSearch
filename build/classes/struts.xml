@@ -15,14 +15,45 @@
 		</action>
 
 		<action name="upload" class="searchAction" method="Img">
-			<result name="success">/questionResultUser.jsp</result>
+			<result name="success" type="redirect">/questionResultUser.jsp</result>
 			<result name="fail">/error.jsp</result>
 		</action>
 		
 		<action name="collect" class="userAction" method="collect">
-			<result name="collectSuccess">/userCollectionSuccess.jsp</result>
-			<result name="collectFail">/userCollectionSuccess.jsp</result>
+			<result name="collectSuccess">/questionResultUser.jsp</result>
+			<result name="collectFail">/error.jsp</result>
 		</action>
 		
+		<action name="cancelCollect" class="userAction" method="cancelCollect">
+			<result name="cancelCollectSuccess">/userCollection.jsp</result>
+			<result name="cancelCollectFail">/error.jsp</result>
+		</action>
+		
+		<action name="searchMyCollect" class="userAction" method="myCollect">
+			<result name="myCollectSuccess">/userCollection.jsp</result>
+			<result name="myCollectFail">/error.jsp</result>
+		</action>
+		
+		
+		<!--得到报错的题目-->
+		<action name="getFeedback" class="AdminAction"  method="getFeedback">
+			<result name="success" type="redirect">/adminManageWrongQuestion.jsp</result>
+			<result name="fail">/error.jsp</result>	
+		</action>
+		<!--管理员修改错题-->
+		<action name="UpdateFeedback" class="AdminAction" method="UpdateFeedback">
+			<result name="success" >/adminSuccess.jsp</result>
+			<result name="fail">/error.jsp</result>	
+		</action>
+		<!--用户报错-->
+		<action name="UploadFeedback" class="AdminAction" method="UploadFeedback">
+			<result name="success">/questionResultUser.jsp</result>
+			<result name="fail">/error.jsp</result>	
+		</action>
+		<!--管理员登录-->
+		<action name="login" class="AdminAction" method="login">
+			<result name="success" type="redirect">/adminHome.jsp</result>
+			<result name="fail">/error.jsp</result>	
+		</action>
 	</package>
 </struts>

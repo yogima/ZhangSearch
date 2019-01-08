@@ -12,4 +12,6 @@ public interface ICustomerDAO {
 	public void update(Customer transientInstance);
 	public List findByHQL(String hql);
 	public Session getSession();
+	public Customer findById(int id);
+	public void saveOrUpdate(Customer transientInstance);
 }
